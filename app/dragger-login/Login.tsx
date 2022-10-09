@@ -1,3 +1,5 @@
+import { Box } from '@chakra-ui/react'
+
 export const Login: React.FC = () => {
-  return <div></div>
+  return <Box>Login</Box>
 }

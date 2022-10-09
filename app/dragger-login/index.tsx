@@ -1,11 +1,12 @@
 import { Login } from './Login'
+import { MainLayout } from 'layout'
 import type { NextPage } from 'next'
 
 const LoginContainer: NextPage = () => {
   return (
-    <div>
+    <MainLayout>
       <Login />
-    </div>
+    </MainLayout>
   )
 }
 
