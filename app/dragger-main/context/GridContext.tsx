@@ -13,20 +13,25 @@ type StartGrid = {
 }
 
 type ContextType = {
-  startGrid?: StartGrid
-  setStartGrid: Dispatch<SetStateAction<StartGrid | undefined>>
-  hoverGrid?: StartGrid
-  setHoverGrid: Dispatch<SetStateAction<StartGrid | undefined>>
+  startGrid: StartGrid
+  setStartGrid: Dispatch<SetStateAction<StartGrid>>
+  hoverGrid: StartGrid
+  setHoverGrid: Dispatch<SetStateAction<StartGrid>>
   color: string
   setColor: Dispatch<SetStateAction<string>>
   stillDown: boolean
   setStillDown: Dispatch<SetStateAction<boolean>>
 }
 
+const initialGrid = {
+  row: 0,
+  column: 0,
+}
+
 const GridContext = createContext<ContextType>({
-  startGrid: undefined,
+  startGrid: initialGrid,
   setStartGrid: () => {},
-  hoverGrid: undefined,
+  hoverGrid: initialGrid,
   setHoverGrid: () => {},
   color: 'white',
   setColor: () => {},
@@ -37,8 +42,8 @@ const GridContext = createContext<ContextType>({
 export const GridContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [startGrid, setStartGrid] = useState<StartGrid | undefined>()
-  const [hoverGrid, setHoverGrid] = useState<StartGrid | undefined>()
+  const [startGrid, setStartGrid] = useState<StartGrid>(initialGrid)
+  const [hoverGrid, setHoverGrid] = useState<StartGrid>(initialGrid)
   const [stillDown, setStillDown] = useState<boolean>(false)
   const [color, setColor] = useState<string>('white')
 

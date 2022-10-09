@@ -10,7 +10,11 @@ export const Main: React.FC = () => {
       {rows.map((_arr, r) => (
         <Grid key={r} templateColumns='repeat(10, 1fr)'>
           {columns.map((_arr, c) => (
-            <GridItem key={c}>
+            <GridItem
+              key={c}
+              role='presentation'
+              aria-label={`${r + 1}-${c + 1}`}
+            >
               <GridBox row={r + 1} column={c + 1} />
             </GridItem>
           ))}

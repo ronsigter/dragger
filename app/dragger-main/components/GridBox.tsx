@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { useGridContext } from '../context/GridContext'
+import { getHighLow } from '../helpers'
 
 type GridBoxProps = { row: number; column: number }
 
@@ -46,13 +47,8 @@ export const GridBox: React.FC<GridBoxProps> = (grid) => {
 
   useEffect(() => {
     const { row, column } = grid
-    const highRow = Math.max(...[startGrid?.row || 0, hoverGrid?.row || 0])
-    const lowRow = Math.min(...[startGrid?.row || 0, hoverGrid?.row || 0])
-    const highCol = Math.max(
-      ...[startGrid?.column || 0, hoverGrid?.column || 0]
-    )
-    const lowCol = Math.min(...[startGrid?.column || 0, hoverGrid?.column || 0])
-
+    const [highRow, lowRow] = getHighLow(startGrid.row, hoverGrid.row)
+    const [highCol, lowCol] = getHighLow(startGrid.column, hoverGrid.column)
     const isWithinRow = lowRow <= row && row <= highRow
     const isWithinCol = lowCol <= column && column <= highCol
 
