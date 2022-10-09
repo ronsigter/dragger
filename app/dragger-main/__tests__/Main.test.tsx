@@ -47,6 +47,19 @@ describe('<MainContainer />', () => {
         })
       }
     }
+
+    await user.hover(screen.getByRole('presentation', { name: '1-1' }))
+    await waitScreenUpdate()
+
+    for (let row = 1; row < 5; row++) {
+      for (let col = 1; col < 5; col++) {
+        expect(
+          screen.getByRole('presentation', { name: `${row}-${col}` })
+        ).toHaveStyle({
+          'background-color': 'rgb(255, 255, 255);',
+        })
+      }
+    }
   })
 
   it('Changes color of grid from two selected points', async () => {

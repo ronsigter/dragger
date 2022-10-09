@@ -17,6 +17,8 @@ const AllTheProviders: React.FC<AllTheProvidersProps> = ({ children }) => (
 
 type RenderOptionsType = Omit<RenderOptions, 'queries'>
 
+jest.setTimeout(120_000)
+
 const customRender = (
   ui: React.ReactElement,
   options?: RenderOptionsType
