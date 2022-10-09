@@ -1,24 +1,17 @@
-import {
-  Box,
-  Button,
-  Center,
-  FormControl,
-  FormLabel,
-  IconButton,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Stack,
-} from '@chakra-ui/react'
+import { Box, Button, Stack } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 import { FormProvider, useForm } from 'react-hook-form'
+import { Routes } from 'routes'
 import { EmailField, PasswordField } from './components'
 import type { FormType } from './components/type'
 
 export const Login: React.FC = () => {
+  const router = useRouter()
   const methods = useForm<FormType>()
 
   const handleOnSubmit = async (form: FormType) => {
     console.log(form)
+    router.push(Routes.MAIN)
   }
 
   return (
