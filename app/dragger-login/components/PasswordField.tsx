@@ -1,49 +1,59 @@
 import { forwardRef, useRef } from 'react'
 import {
   FormControl,
+  FormErrorMessage,
   FormLabel,
   IconButton,
   Input,
   InputGroup,
-  InputProps,
   InputRightElement,
   useDisclosure,
-  useMergeRefs,
 } from '@chakra-ui/react'
 import { HiEye, HiEyeOff } from 'react-icons/hi'
+import { useFormContext } from 'react-hook-form'
+import type { FormType } from './type'
 
-export const PasswordField: React.FC = forwardRef<HTMLInputElement, InputProps>(
-  function Field(_props, ref) {
-    const { isOpen, onToggle } = useDisclosure()
-    const inputRef = useRef<HTMLInputElement>(null)
+export const PasswordField: React.FC = () => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<FormType>()
+  const { isOpen, onToggle } = useDisclosure()
+  const inputRef = useRef<HTMLInputElement>(null)
 
-    const mergeRef = useMergeRefs(inputRef, ref)
-    const onClickReveal = () => {
-      onToggle()
-      if (inputRef.current) {
-        inputRef.current.focus({ preventScroll: true })
-      }
+  const onClickReveal = () => {
+    onToggle()
+    if (inputRef.current) {
+      inputRef.current.focus({ preventScroll: true })
     }
-
-    return (
-      <FormControl>
-        <FormLabel>Password</FormLabel>
-        <InputGroup>
-          <Input
-            ref={mergeRef}
-            type={isOpen ? 'text' : 'password'}
-            autoComplete='current-password'
-          />
-          <InputRightElement>
-            <IconButton
-              variant='link'
-              aria-label={isOpen ? 'Mask password' : 'Reveal password'}
-              icon={isOpen ? <HiEyeOff /> : <HiEye />}
-              onClick={onClickReveal}
-            />
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
-    )
   }
-)
+
+  return (
+    <FormControl isInvalid={!!errors.password}>
+      <FormLabel>Password</FormLabel>
+      <InputGroup>
+        <Input
+          type={isOpen ? 'text' : 'password'}
+          autoComplete='current-password'
+          {...register('password', {
+            required: 'Please enter your password',
+            minLength: {
+              value: 6,
+              message: 'Password must be at least 6 characters',
+            },
+          })}
+          focusBorderColor='none'
+        />
+        <InputRightElement>
+          <IconButton
+            variant='link'
+            aria-label={isOpen ? 'Mask password' : 'Reveal password'}
+            icon={isOpen ? <HiEyeOff /> : <HiEye />}
+            onClick={onClickReveal}
+          />
+        </InputRightElement>
+      </InputGroup>
+      <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
+    </FormControl>
+  )
+}
