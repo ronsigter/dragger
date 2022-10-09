@@ -33,6 +33,7 @@ export const PasswordField: React.FC = () => {
       <FormLabel>Password</FormLabel>
       <InputGroup>
         <Input
+          role='textbox'
           type={isOpen ? 'text' : 'password'}
           autoComplete='current-password'
           {...register('password', {
@@ -53,7 +54,9 @@ export const PasswordField: React.FC = () => {
           />
         </InputRightElement>
       </InputGroup>
-      <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
+      <FormErrorMessage role='presentation' aria-label='form-error-message'>
+        {errors?.password?.message}
+      </FormErrorMessage>
     </FormControl>
   )
 }

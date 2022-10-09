@@ -26,7 +26,9 @@ export const EmailField: React.FC = () => {
           },
         })}
       />
-      <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
+      <FormErrorMessage role='presentation' aria-label='form-error-message'>
+        {errors?.email?.message}
+      </FormErrorMessage>
     </FormControl>
   )
 }
