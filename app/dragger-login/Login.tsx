@@ -10,7 +10,6 @@ export const Login: React.FC = () => {
   const methods = useForm<FormType>()
 
   const handleOnSubmit = async (form: FormType) => {
-    console.log(form)
     router.push(Routes.MAIN)
   }
 
