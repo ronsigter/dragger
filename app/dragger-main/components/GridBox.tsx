@@ -17,6 +17,8 @@ export const GridBox: React.FC<GridBoxProps> = (grid) => {
     setStillDown,
   } = useGridContext()
   const gridBoxRef = useRef<HTMLDivElement>(null)
+  const prevColorRef = useRef<string>('rgb(255, 255, 255)')
+
   const [gridColor, setGridColor] = useState<string>('rgb(255, 255, 255)')
 
   const handleOnMouseDown = (): void => {
@@ -52,8 +54,12 @@ export const GridBox: React.FC<GridBoxProps> = (grid) => {
     const isWithinRow = lowRow <= row && row <= highRow
     const isWithinCol = lowCol <= column && column <= highCol
 
-    if (isWithinRow && isWithinCol) setGridColor(color)
-  }, [color, grid, hoverGrid, startGrid])
+    if (isWithinRow && isWithinCol) {
+      setGridColor(color)
+
+      if (!stillDown) prevColorRef.current = color
+    } else setGridColor(prevColorRef.current)
+  }, [color, grid, hoverGrid, startGrid, stillDown])
 
   return (
     <Box
