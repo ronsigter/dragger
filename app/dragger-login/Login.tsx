@@ -40,6 +40,7 @@ export const Login: React.FC = () => {
         description: 'Please login first.',
         status: 'error',
       })
+      router.replace('/login')
     }
   }, [router, toaster])
 

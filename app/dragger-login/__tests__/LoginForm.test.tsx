@@ -9,6 +9,7 @@ jest.mock('next/router', () => ({
       route: '/',
       query: {},
       push: mockRouterPush,
+      replace: () => {},
     }
   },
 }))
