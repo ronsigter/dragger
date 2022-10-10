@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
+import { useAuth } from 'hooks'
 import Router from 'next/router'
 import { Routes } from 'routes'
 import { GridBox } from './components'
@@ -14,8 +15,10 @@ import { GridBox } from './components'
 export const Main: React.FC = () => {
   const rows = Array.from({ length: 10 })
   const columns = Array.from({ length: 10 })
+  const { logout } = useAuth()
 
   const handleSignOut = (): void => {
+    logout()
     Router.push(Routes.LOGIN)
   }
 

@@ -1,4 +1,5 @@
-import { Box, Button, Stack } from '@chakra-ui/react'
+import { Box, Button, Stack, useToast } from '@chakra-ui/react'
+import { useAuth } from 'hooks'
 import { useRouter } from 'next/router'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Routes } from 'routes'
@@ -8,9 +9,27 @@ import type { FormType } from './components/type'
 export const Login: React.FC = () => {
   const router = useRouter()
   const methods = useForm<FormType>()
+  const { login } = useAuth()
+  const toaster = useToast({
+    position: 'top',
+  })
 
   const handleOnSubmit = async (form: FormType) => {
-    router.push(Routes.MAIN)
+    try {
+      await login(form)
+      toaster({
+        title: 'Authentication',
+        description: 'Login successful.',
+        status: 'success',
+      })
+      router.push(Routes.MAIN)
+    } catch (error) {
+      toaster({
+        title: 'Authentication',
+        description: 'Login unsuccessful.',
+        status: 'error',
+      })
+    }
   }
 
   return (
