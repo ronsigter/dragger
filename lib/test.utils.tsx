@@ -46,3 +46,4 @@ export * from '@testing-library/react'
 
 export { customRender as render }
 export { default as userEvent } from '@testing-library/user-event'
+export { default as fetchMock } from 'jest-fetch-mock'

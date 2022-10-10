@@ -1,6 +1,18 @@
 import { render, screen, userEvent, waitScreenUpdate } from 'lib/test.utils'
 import LoginContainer from '..'
 
+const mockRouterPush = jest.fn()
+
+jest.mock('next/router', () => ({
+  useRouter() {
+    return {
+      route: '/',
+      query: {},
+      push: mockRouterPush,
+    }
+  },
+}))
+
 describe('<LoginContainer />', () => {
   const user = userEvent.setup()
 
