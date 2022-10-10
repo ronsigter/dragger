@@ -6,10 +6,11 @@ import type { NextRequest } from 'next/server'
 export async function middleware(request: NextRequest) {
   const refreshToken = request.cookies.get('refresh_token')
   const response = NextResponse.next()
+  const loginRoute = `${Routes.LOGIN}?error=unauthenticated`
 
   // ? If no token found, redirect to Login Page
   if (!refreshToken)
-    return NextResponse.redirect(new URL(Routes.LOGIN, request.url))
+    return NextResponse.redirect(new URL(loginRoute, request.url))
 
   const data = await GetRefreshToken(refreshToken)
 
@@ -19,7 +20,7 @@ export async function middleware(request: NextRequest) {
     response.cookies.delete('token')
     response.cookies.delete('refresh_token')
 
-    return NextResponse.redirect(new URL(Routes.LOGIN, request.url))
+    return NextResponse.redirect(new URL(loginRoute, request.url))
   }
 
   response.cookies.set('token', `Bearer ${data.access_token}`)

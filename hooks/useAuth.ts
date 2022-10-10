@@ -18,6 +18,7 @@ export const useAuth = () => {
 
   const logout = () => {
     deleteCookie('token')
+    deleteCookie('refresh_token')
   }
 
   return {

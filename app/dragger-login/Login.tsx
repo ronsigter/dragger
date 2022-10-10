@@ -1,6 +1,7 @@
 import { Box, Button, Stack, useToast } from '@chakra-ui/react'
 import { useAuth } from 'hooks'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Routes } from 'routes'
 import { EmailField, PasswordField } from './components'
@@ -31,6 +32,16 @@ export const Login: React.FC = () => {
       })
     }
   }
+
+  useEffect(() => {
+    if (router.query.error === 'unauthenticated') {
+      toaster({
+        title: 'Authentication',
+        description: 'Please login first.',
+        status: 'error',
+      })
+    }
+  }, [router, toaster])
 
   return (
     <Box w='100%'>
