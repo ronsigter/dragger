@@ -4,7 +4,7 @@
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | ![image-gallery](https://github.com/ronsigter/image-gallery-front/blob/main/public/login-dragger.png?raw=true) | ![image-gallery](https://github.com/ronsigter/image-gallery-front/blob/main/public/drag-select.gif?raw=true) |
 
-Live Demo:
+Live Demo: https://dragger.vercel.app/
 
 ### Libraries
 
