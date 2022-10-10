@@ -1,8 +1,8 @@
 ### Dragger
 
-| Login Page                                                                                                     | Main Page                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| ![image-gallery](https://github.com/ronsigter/image-gallery-front/blob/main/public/login-dragger.png?raw=true) | ![image-gallery](https://github.com/ronsigter/image-gallery-front/blob/main/public/drag-select.gif?raw=true) |
+| Login Page                                                                                         | Main Page                                                                                        |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| ![image-gallery](https://github.com/ronsigter/dragger/blob/main/public/login-dragger.png?raw=true) | ![image-gallery](https://github.com/ronsigter/dragger/blob/main/public/drag-select.gif?raw=true) |
 
 Live Demo: https://dragger.vercel.app/
 
